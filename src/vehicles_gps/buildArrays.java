@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author brendanmcantosh
+ * @author brendanmcantosh, emersondelemmus
  */
 //private List<VehData> ListVehicles = Collections.synchronizedList(new ArrayList<VehData>());
 public class buildArrays extends Thread {

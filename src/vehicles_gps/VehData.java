@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  *
- * @author brendanmcantosh
+ * @author brendanmcantosh, emersondelemmus
  */
 class VehData {
     String ident;

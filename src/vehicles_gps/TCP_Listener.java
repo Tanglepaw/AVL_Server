@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author brendanmcantosh
+ * @author brendanmcantosh, emersondelemmus
  */
 public class TCP_Listener extends Thread {
 int port;

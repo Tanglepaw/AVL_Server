@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author brendanmcantosh
+ * @author brendanmcantosh, emersondelemmus
  */
 public class UDP_Connection extends Thread {
 

@@ -24,7 +24,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author brendanmcantosh
+ * @author brendanmcantosh, emersondelemmus
  */
 public class TCP_Sender extends Thread {
     private List<VehData> All;

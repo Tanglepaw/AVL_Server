@@ -9,7 +9,7 @@ import java.util.concurrent.ExecutorService;
 
 /**
  *
- * @author brendanmcantosh
+ * @author brendanmcantosh, emersondelemmus
  */
 public class Vehicles_GPS {
 
