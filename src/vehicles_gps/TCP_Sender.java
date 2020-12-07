@@ -7,6 +7,7 @@ package vehicles_gps;
 
 import com.google.gson.Gson;
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -28,6 +29,7 @@ import java.util.logging.Logger;
 public class TCP_Sender extends Thread {
     private List<VehData> All;
     private List<VehData> Active;
+    private jsonObj json = new jsonObj();
 
     private Socket socket;
     buildArrays build;
@@ -47,7 +49,8 @@ public class TCP_Sender extends Thread {
             BufferedReader reader = new BufferedReader(new InputStreamReader(input));
             
             OutputStream output = socket.getOutputStream();  
-            OutputStreamWriter out = new OutputStreamWriter(socket.getOutputStream());
+            //OutputStreamWriter out = new OutputStreamWriter(socket.getOutputStream());
+            DataOutputStream out = new DataOutputStream(socket.getOutputStream());
             
             System.out.println("Connected from ip: " + socket.getInetAddress());
             boolean stop = false;
@@ -71,29 +74,36 @@ public class TCP_Sender extends Thread {
             {
                 
                 System.out.println("Active");
-                //send = "{\"status\":\"active\",\"vehicles\":[";
+                json.status = "Active";
+                json.vehicles = build.getActive();
                 
-                    Active = build.getActive();
-                send = gson.toJson(Active) + "\n";
+                send = gson.toJson(json) + "\n";
+                System.out.println(send);
+                out.writeBytes(send);
                 continue;
             }// Active
             else if (str.equals("<AVL><vehicles>all</vehicles></AVL>"))
             {
-                String Al = "active";
-                send = gson.toJson(Al);
                 System.out.println("All");
-                All = build.getAll();
-                send = gson.toJson(All) + "\n";
+                
+                json.status = "all";
+                json.vehicles = build.getAll();
+                
+                send = gson.toJson(json) + "\n";
                 System.out.println(send);
-                out.write(str);
+                out.writeBytes(send);
+                continue;
             }
             else
             {
                 System.out.println("invalid XML");
-                send = "{\"status\": \"invalid\",\"vehicles\":[]}\n";
-                send = gson.toJson(str) + "\n";
-                System.out.println(str);
-                out.write(str);
+                json.status = "invalid";
+                json.vehicles = build.getAll();
+                json.vehicles.clear();
+                
+                send = gson.toJson(json) + "\n";
+                System.out.println(send);
+                out.writeBytes(send);
                 continue;
             }
                 
@@ -104,6 +114,11 @@ public class TCP_Sender extends Thread {
         } catch (IOException ex) {
             Logger.getLogger(TCP_Sender.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    class jsonObj {
+        String status;
+        List<VehData> vehicles;
     }
     
 }
