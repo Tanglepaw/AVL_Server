@@ -36,14 +36,15 @@ public class UDP_Connection extends Thread {
         try (DatagramSocket clientSocket = new DatagramSocket(port)) {
             byte[] buffer = new byte[1024];
             //clientSocket.setSoTimeout(30000);
-
+            System.out.println("Server is listening on port 9099 for UDP messages\n");
+                   
             while (true) {
                 DatagramPacket dp = new DatagramPacket(buffer, 0, buffer.length);
                 clientSocket.receive(dp);
 
                 String recievedM = new String(dp.getData());
                 recievedM = recievedM.trim();
-                System.out.println(recievedM);
+                System.out.println("RECEIVED: " + recievedM);
                 
                 errorCheck(recievedM);
             }

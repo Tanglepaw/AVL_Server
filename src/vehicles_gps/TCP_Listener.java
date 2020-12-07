@@ -30,7 +30,7 @@ public TCP_Listener(int port, buildArrays build){
             {
                 Socket socket = server.accept();
                 new TCP_Sender(socket,build).start();
-                System.out.println("TCP");
+                System.out.println("\nGetVeh.jar accepted connection request...");
                 
             }
         } catch (IOException ex) {

@@ -52,7 +52,7 @@ public class TCP_Sender extends Thread {
             //OutputStreamWriter out = new OutputStreamWriter(socket.getOutputStream());
             DataOutputStream out = new DataOutputStream(socket.getOutputStream());
             
-            System.out.println("Connected from ip: " + socket.getInetAddress());
+            System.out.println("\nConnected from ip: " + socket.getInetAddress() + "\n");
             boolean stop = false;
             while(!stop)
             {
