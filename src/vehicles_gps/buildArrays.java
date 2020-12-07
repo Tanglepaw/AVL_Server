@@ -23,7 +23,7 @@ public class buildArrays extends Thread {
     private final List<VehData> Active = Collections.synchronizedList(new ArrayList<VehData>());
             
     public void buildArrays(VehData vehicle){
-        All.removeIf(All -> All.ID.equals(vehicle.ID));
+        All.removeIf(All -> All.ident.equals(vehicle.ident));
         All.add(vehicle);
         //System.out.println(All.get(All.size()-1).ID);
     }
@@ -38,7 +38,7 @@ public class buildArrays extends Thread {
         for (int i = 0; i < All.size(); i++)
         {
             Active.clear();
-            if(All.get(i).Status.equals("Active"));
+            if(All.get(i).status.equals("Active"));
                 Active.add(All.get(i));
         }
         System.out.println(Active.iterator());
@@ -59,7 +59,7 @@ public class buildArrays extends Thread {
             for (int i = All.size()-1; i >= 0; i--) // If list hasn't been updated in 30 seconds remove entry
             {
                 //System.out.println(All.get(i).ID);
-                LocalTime t = LocalTime.parse(All.get(i).Time);
+                LocalTime t = LocalTime.parse(All.get(i).time);
                 float sec;
                 sec = t.until(LocalTime.now(),ChronoUnit.SECONDS);
                 if (sec > 30)

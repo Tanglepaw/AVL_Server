@@ -16,11 +16,11 @@ import java.util.List;
  * @author brendanmcantosh
  */
 class VehData {
-    String ID;
-    String Status;
-    String Lat;
-    String longe;
-    String Speed;
-    String Heading;
-    String Time;
+    String ident;
+    String status;
+    String latitude;
+    String longitude;
+    String speed;
+    String heading;
+    String time;
 }

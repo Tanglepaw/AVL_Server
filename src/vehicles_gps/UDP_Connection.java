@@ -86,7 +86,7 @@ public class UDP_Connection extends Thread {
                     
                     if(!checkSum.equals(orgChksum))
                     {
-                        System.out.println("Checksum Invalad");
+                        System.out.println("Checksum Invalid");
                         return;
                     }
                     if(!sizeCheck(dat,data))
@@ -107,13 +107,13 @@ public class UDP_Connection extends Thread {
     private boolean sizeCheck(VehData dat, String[] data) {
         LocalTime t = LocalTime.now();
         DateTimeFormatter tf = DateTimeFormatter.ofPattern("HH:mm:ss");
-        dat.ID = data[12];
-        dat.Status = data[2];
-        dat.Time = t.format(tf);
-        dat.Lat = calcLat(data[3],data[4]);
-        dat.longe = calcLonge(data[5], data[6]);
-        dat.Speed = data[7];
-        dat.Heading = data[8];
+        dat.ident = data[12];
+        dat.status = data[2];
+        dat.time = t.format(tf);
+        dat.latitude = calcLat(data[3],data[4]);
+        dat.longitude = calcLonge(data[5], data[6]);
+        dat.speed = data[7];
+        dat.heading = data[8];
         
         return true;
     }
